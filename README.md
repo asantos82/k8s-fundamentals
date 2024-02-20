@@ -6,13 +6,13 @@ Repo for activities of the k8s fundamentals training
 The k8s fundamentals training has some lab activities.
 So to perform them I needed to set up a lab with a control plane instance and 3 worker nodes.
 The training does not provide any scripts or guidance on the best way to build the lab.
-Only command and shown, this will make the process tedious to provision 4 instances, and difficult to automate.
+Only individual commands are shown, this will make the process tedious to provision 4 instances, and difficult to replicate.
 
 I've decided to provision the instances with Vagrant and manage them with Ansible.
 
 Currently, I have a MacBook Pro with an arm processor.
 Virtualbox doesn't yet have a release for macOS arm CPUs. So I've decided to do the following:
-  - Install on a PC Vagrant, and provision the Virtualbox instances with it
+  - Install on a Windows PC Vagrant, and provision the Virtualbox instances with it
   - Expose the instances on my LAN, so I can access them from my laptop
   - Provision/Manage the software on the instances with Ansible
 
@@ -47,7 +47,8 @@ After you've reviewed the setting it is time to bring up the environment
 ```
 
 <details>
-<summary>vagrant up - details of the execution</summary>
+  <summary>vagrant up - details of the execution</summary>
+
 ```console
 > vagrant up
 Bringing machine 'c1-cp1' up with 'virtualbox' provider...
@@ -253,14 +254,15 @@ Download redirected to host: cloud-images.ubuntu.com
 ==> c1-node3: Running provisioner: shell...
     c1-node3: Running: inline script
 ```
+
 </details>
 
 #### k8s-fundamentals - Lab Instances - Vagrant - ssh to the instances
 
 The created instances have the following names:
 
-  - c1-cp1 - control plane node name
-  - c1-node{1-3} - worker nodes names
+  - `c1-cp1` - control plane node name
+  - `c1-node{1-3}` - worker nodes names
 
 So to ssh to `c1-cp1` instance we execute:
 
@@ -301,5 +303,6 @@ vagrant@c1-cp1:~$
 
 > [!IMPORTANT]  
 >
-> `vagrant ssh <box>` only works from withing the Windows PC where vagrant + virtualbos are running.
+> `vagrant ssh <box>` only works from withing the Windows PC where vagrant + virtualbox are running.
+>
 > To access from other instances on your LAN, ssh config will need to be exported. More on that later
