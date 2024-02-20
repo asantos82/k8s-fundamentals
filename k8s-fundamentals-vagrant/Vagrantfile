@@ -5,9 +5,10 @@
 BOX_IMAGE = "ubuntu/jammy64"
 BOX_VERSION = "20240207.0.0"
 
-# CPU and memory settings
+# CPU and memory and disk settings
 CPU = 2
 MEMORY = 2048
+DISK_SIZE = "100GB"
 
 # VMs prefix
 CP_HOSTNAME = "c1-cp"
@@ -39,6 +40,8 @@ Vagrant.configure("2") do |config|
           cp.vm.box = BOX_IMAGE
           cp.vm.box_version = BOX_VERSION
 
+          cp.vm.disk :disk, size: DISK_SIZE, primary: true
+
           cp.vm.provider "virtualbox" do |vbcp|
               vbcp.name = "#{CP_HOSTNAME}#{i}"
               vbcp.cpus = CPU
@@ -56,6 +59,8 @@ Vagrant.configure("2") do |config|
       config.vm.define "#{NODE_HOSTNAME}#{i}" do |node|
           node.vm.box = BOX_IMAGE
           node.vm.box_version = BOX_VERSION
+
+          node.vm.disk :disk, size: DISK_SIZE, primary: true
 
           node.vm.provider "virtualbox" do |vbnode|
               vbnode.name = "#{NODE_HOSTNAME}#{i}"
