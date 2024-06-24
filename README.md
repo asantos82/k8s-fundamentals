@@ -558,10 +558,11 @@ CONTAINER           IMAGE               CREATED             STATE               
 Now let's exec into one of the pods.
 
 
-> [!IMPORTANT]  
-> # Container image was built using a distroless image for its base. So no bash or any other OS binaries are present
-> # https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/blob/7fed665b624c92d7e787ca75b506b2d163a2cafb/quickstarts/hello-app/Dockerfile
-> > # Let's get an older version of the container not build on a distroless image
+> [!IMPORTANT]
+>
+> Container image was built using a distroless image for its base. So no bash or any other OS binaries are present
+> https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/blob/7fed665b624c92d7e787ca75b506b2d163a2cafb/quickstarts/hello-app/Dockerfile
+> Let's get an older version of the container not build on a distroless image
 
 ```console
 vagrant@c1-cp1:~$ kubectl exec -it hello-world-pod -- /bin/sh
